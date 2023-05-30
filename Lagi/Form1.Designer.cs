@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             dataGridView1 = new DataGridView();
+            Delete = new DataGridViewTextBoxColumn();
             textBox1 = new TextBox();
             label1 = new Label();
             label2 = new Label();
@@ -44,6 +45,7 @@
             label7 = new Label();
             checkBox1 = new CheckBox();
             button1 = new Button();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -51,9 +53,12 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Delete });
             dataGridView1.Location = new Point(12, 250);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -61,6 +66,16 @@
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(1063, 188);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellDoubleClick += OndataGridView1CellDoubleClick;
+            // 
+            // Delete
+            // 
+            Delete.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            Delete.HeaderText = "";
+            Delete.MinimumWidth = 6;
+            Delete.Name = "Delete";
+            Delete.ReadOnly = true;
+            Delete.Width = 23;
             // 
             // textBox1
             // 
@@ -159,6 +174,7 @@
             textBox4.Size = new Size(196, 27);
             textBox4.TabIndex = 13;
             textBox4.Text = "0";
+            textBox4.KeyPress += textBox4_KeyPress;
             // 
             // label7
             // 
@@ -181,19 +197,30 @@
             // 
             // button1
             // 
-            button1.Location = new Point(599, 59);
+            button1.Location = new Point(619, 59);
             button1.Name = "button1";
             button1.Size = new Size(94, 39);
             button1.TabIndex = 18;
-            button1.Text = "INSERT";
+            button1.Text = "SUBMIT";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(619, 104);
+            button2.Name = "button2";
+            button2.Size = new Size(94, 39);
+            button2.TabIndex = 19;
+            button2.Text = "CLEAR";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += OnButtonResetClick;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1087, 450);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(checkBox1);
             Controls.Add(label7);
@@ -236,5 +263,7 @@
         private Label label7;
         private CheckBox checkBox1;
         private Button button1;
+        private DataGridViewTextBoxColumn Delete;
+        private Button button2;
     }
 }

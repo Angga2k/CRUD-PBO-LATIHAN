@@ -9,7 +9,7 @@ namespace Lagi.Model
 {
     public class ContextMahasiswa
     {
-        private int? CurrentIDMahasiswa;
+        private string? CurrentIDMahasiswa;
 
         #region Properties
         public List<Mahasiswa> ctxListMahasiswa = new List<Mahasiswa>();
@@ -18,14 +18,16 @@ namespace Lagi.Model
         public bool InsertMahasiswa(Mahasiswa mahasiswa)
         {
             bool isSuccess = false;
-            int affectedRows = 0;
-            if (CurrentIDMahasiswa == null)
-            {
-                affectedRows = DatabaseHelpers.GetInstance().Create("mahasiswa", mahasiswa.ToJson());
-                
-            }
+            DatabaseHelpers.GetInstance().Create("mahasiswa", mahasiswa.ToJson());
 
+            return isSuccess;
+        }
 
+        public bool UpdateMahasiswa(Mahasiswa mahasiswa)
+        {
+            bool isSuccess = false;
+            CurrentIDMahasiswa = mahasiswa.NIM;
+            DatabaseHelpers.GetInstance().UpdateWhereString("mahasiswa", mahasiswa.ToJson(), "nim", CurrentIDMahasiswa);
             return isSuccess;
         }
     }

@@ -18,7 +18,7 @@ namespace Lagi.Model
         public string? KdProgramStudi { get; set; }
         public string? ProgramStudi { get; set; }
         public decimal UKT { get; set; }
-        public Boolean isActive { get; set; }
+        public bool isActive { get; set; }
 
         public Dictionary<string, object> ToJson() => new Dictionary<string, object>
         {

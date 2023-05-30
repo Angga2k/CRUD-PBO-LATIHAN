@@ -195,6 +195,33 @@ namespace Lagi.Helper
             return affectedRows;
         }
 
+        public int UpdateWhereString(string table, Dictionary<string, object> data, string whereColumn, string? whereValue)
+        {
+            string set = "";
+            foreach (string key in data.Keys)
+            {
+                set += $"{key} = '{data[key]}'";
+                if (key != data.Keys.Last())
+                {
+                    set += ", ";
+                }
+            }
+            int affectedRows;
+            try
+            {
+                affectedRows = ExecuteNonQuery($"UPDATE {Schema}.{table} SET {set} WHERE {whereColumn} = '{whereValue}'");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                throw;
+
+            }
+            return affectedRows;
+        }
+
+
         public int Delete(string table, string whereColumn, int? whereValue)
         {
             int affectedRows;
